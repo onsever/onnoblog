@@ -8,7 +8,7 @@ import userRoute from "./routes/users.js";
 import postsRoute from "./routes/posts.js";
 import categoriesRoute from "./routes/categories.js";
 
-dotenv.config({path: "api/.env"});
+dotenv.config({path: ".env"});
 const app = express();
 app.use(express.json());
 
