@@ -6,6 +6,7 @@
     padding: 1.5rem;
     background-color: #fdfbfb;
     border-radius: 10px;
+    flex: 3;
 }
 
 .sidebar-section {
