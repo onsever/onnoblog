@@ -4,25 +4,27 @@ import Header from "../../components/header/Header";
 import PostList from "../../components/postlist/PostList";
 import SideBar from "../../components/sidebar/SideBar";
 import axios from "axios";
+import {useLocation} from "react-router-dom";
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
+    const { search } = useLocation();
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get("/posts");
-            console.log(response);
+            setPosts(response.data);
         }
 
         fetchData();
 
-    }, []);
+    }, [search]);
 
     return (
         <>
             <Header />
             <div className={styles.container}>
-                <PostList />
+                <PostList posts={posts} />
                 <SideBar />
             </div>
         </>
