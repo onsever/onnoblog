@@ -1,20 +1,27 @@
 import React from 'react';
 import styles from "./SinglePost.module.css";
+import {Link} from "react-router-dom";
 
-const SinglePost = () => {
+const SinglePost = ({ post }) => {
     return (
         <article className={styles["card-container"]}>
             <div className={styles.card}>
                 <div className={styles["card-header"]}>
-                    <img
-                        src="https://source.unsplash.com/600x400/?computer"
-                        alt="Image"
-                    />
+                    {post.photo && (
+                        <img
+                            src={post.postImg}
+                            alt="Image"
+                        />
+                    )}
                 </div>
                 <div className={styles["card-body"]}>
-                    <span className={styles["card-tag"]}>Technology</span>
-                    <h4>What's new in 2022 Tech</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad debitis deleniti eligendi eos esse facere fuga ipsam magnam nostrum nulla quaerat quisquam reprehenderit rerum, sed veritatis voluptas voluptate voluptatum!</p>
+                    <div className={styles["card-sub"]}>
+                        {post.categories.map((category) => {
+                            return <span className={styles["card-tag"]}>{category.name}</span>
+                        })}
+                    </div>
+                    <h4><Link to={`/post/${post._id}`} className={styles.link}>{post.title}</Link></h4>
+                    <p>{post.desc}</p>
                 </div>
                 <div className={styles["card-footer"]}>
                     <div className={styles["author-image"]}>
@@ -23,8 +30,8 @@ const SinglePost = () => {
                             alt="User Profile Image"
                         />
                         <div className={styles["author-info"]}>
-                            <h5>Jane Doe</h5>
-                            <small>2h ago</small>
+                            <h5>{post.username}</h5>
+                            <small>{new Date(post.createdAt).toDateString()}</small>
                         </div>
                     </div>
                     <button className={styles["card-btn"]}>Read more...</button>

@@ -73,3 +73,8 @@
     font-size: 1.8rem;
     font-weight: bold;
 }
+
+.post-author a {
+    text-decoration: none;
+    color: var(--main-color);
+}

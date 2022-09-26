@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./SideBar.module.css";
+import axios from "axios";
+import {Link} from "react-router-dom";
 
 const SideBar = () => {
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            const response = await axios.get("/categories");
+            setCategories(response.data);
+        };
+
+        fetchCategories();
+
+    }, []);
+
     return (
         <aside className={styles.sidebar}>
             <section className={styles["sidebar-section"]}>
@@ -16,12 +30,11 @@ const SideBar = () => {
             <section className={styles["sidebar-section"]}>
                 <span className={styles["sidebar-title"]}>Categories</span>
                 <ul className={styles["sidebar-list"]}>
-                    <li className={styles["sidebar-item"]}>Life</li>
-                    <li className={styles["sidebar-item"]}>Music</li>
-                    <li className={styles["sidebar-item"]}>Style</li>
-                    <li className={styles["sidebar-item"]}>Sport</li>
-                    <li className={styles["sidebar-item"]}>Tech</li>
-                    <li className={styles["sidebar-item"]}>Cinema</li>
+                    {categories.map((category) => {
+                        return <Link to={`/?cat=${category.name}`} className={styles.link}>
+                            <li key={category.name} className={styles["sidebar-item"]}>{category.name}</li>
+                        </Link>
+                    })}
                 </ul>
             </section>
             <section className={styles["sidebar-section"]}>

@@ -2,13 +2,12 @@ import React from 'react';
 import styles from "./PostList.module.css";
 import SinglePost from "../singlepost/SinglePost";
 
-const PostList = () => {
+const PostList = ({ posts }) => {
     return (
         <main className={styles.main}>
-            <SinglePost />
-            <SinglePost />
-            <SinglePost />
-            <SinglePost />
+            {posts.map((post) => {
+                return <SinglePost key={post._id} post={post} />
+            })}
         </main>
     );
 };

@@ -27,9 +27,12 @@
     gap: .5rem;
 }
 
-.card-body h4 {
+.card-body h4,
+.link {
     font-size: 1.5rem;
     text-transform: capitalize;
+    text-decoration: none;
+    color: var(--main-color);
 }
 
 .card-tag {
@@ -68,4 +71,16 @@
 
 .author-info small {
     color: #666;
+}
+
+.card-sub {
+    display: flex;
+}
+
+.card-sub span {
+    margin-left: 5px;
+}
+
+.card-sub span:first-child {
+    margin-left: 0;
 }
